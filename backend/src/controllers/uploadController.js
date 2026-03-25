@@ -1,17 +1,13 @@
-// ============================================================
 // controllers/uploadController.js — Cloudinary file upload
-// ============================================================
 
 import cloudinary from "../config/cloudinary.js";
 import Note from "../models/note.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
-
-// ─────────────────────────────────────────
 // @desc    Upload a file (image/PDF) to Cloudinary and link to a note
 // @route   POST /api/upload/:noteId
 // @access  Private
-// ─────────────────────────────────────────
+
 const uploadFile = asyncHandler(async (req, res) => {
   if (!req.file) {
     res.status(400);
@@ -66,11 +62,10 @@ const uploadFile = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Delete a file from Cloudinary and unlink from note
 // @route   DELETE /api/upload/:noteId
 // @access  Private
-// ─────────────────────────────────────────
+
 const deleteFile = asyncHandler(async (req, res) => {
   const note = await Note.findOne({
     _id: req.params.noteId,

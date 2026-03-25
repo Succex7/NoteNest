@@ -1,16 +1,13 @@
-// ============================================================
 // controllers/noteController.js — Notes CRUD logic
-// ============================================================
 
 import Note from "../models/note.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 
-// ─────────────────────────────────────────
 // @desc    Create a new note
 // @route   POST /api/notes
 // @access  Private
-// ─────────────────────────────────────────
+
 const createNote = asyncHandler(async (req, res) => {
   const { title, content, folderId, fileUrl, filePublicId, fileType } = req.body;
 
@@ -37,12 +34,11 @@ const createNote = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Get all notes for the logged-in user
 // @route   GET /api/notes
 // @access  Private
 // Query params: folderId, sort, search
-// ─────────────────────────────────────────
+
 const getNotes = asyncHandler(async (req, res) => {
   const { folderId, sort = "createdAt", search } = req.query;
 
@@ -74,12 +70,10 @@ const getNotes = asyncHandler(async (req, res) => {
   });
 });
 
-
-// ─────────────────────────────────────────
 // @desc    Get a single note by ID
 // @route   GET /api/notes/:id
 // @access  Private
-// ─────────────────────────────────────────
+
 const getNoteById = asyncHandler(async (req, res) => {
   const note = await Note.findOne({
     _id: req.params.id,
@@ -98,11 +92,10 @@ const getNoteById = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Update a note (content, title, folder)
 // @route   PUT /api/notes/:id
 // @access  Private
-// ─────────────────────────────────────────
+
 const updateNote = asyncHandler(async (req, res) => {
   const { title, content, folderId } = req.body;
 
@@ -131,11 +124,10 @@ const updateNote = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Delete a single note
 // @route   DELETE /api/notes/:id
 // @access  Private
-// ─────────────────────────────────────────
+
 const deleteNote = asyncHandler(async (req, res) => {
   const note = await Note.findOne({
     _id: req.params.id,
@@ -159,11 +151,10 @@ const deleteNote = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Bulk delete multiple notes
 // @route   DELETE /api/notes/bulk-delete
 // @access  Private
-// ─────────────────────────────────────────
+
 const bulkDeleteNotes = asyncHandler(async (req, res) => {
   const { noteIds } = req.body;
 
@@ -185,11 +176,10 @@ const bulkDeleteNotes = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Search notes by keyword
 // @route   GET /api/notes/search?q=keyword
 // @access  Private
-// ─────────────────────────────────────────
+
 const searchNotes = asyncHandler(async (req, res) => {
   const { q } = req.query;
 

@@ -1,7 +1,5 @@
-// ============================================================
 // middleware/authMiddleware.js — JWT Authentication Guard
 // Protects private routes by verifying the Bearer token
-// ============================================================
 
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";

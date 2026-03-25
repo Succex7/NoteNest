@@ -1,6 +1,4 @@
-// ============================================================
 // middleware/rateLimitMiddleware.js — Route-specific rate limiters
-// ============================================================
 
 import rateLimit from "express-rate-limit";
 

@@ -1,9 +1,7 @@
-// ============================================================
 // models/User.js — Mongoose schema for User
-// ============================================================
 
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema(
   {
@@ -52,9 +50,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// ─────────────────────────────────────────
 // Hash password before saving
-// ─────────────────────────────────────────
 
 userSchema.pre("save", async function (next) {
   // Only hash if the password field was actually modified
@@ -66,9 +62,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// ─────────────────────────────────────────
 // Instance method: compare passwords
-// ─────────────────────────────────────────
 
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);

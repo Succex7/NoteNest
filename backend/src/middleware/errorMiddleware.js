@@ -1,10 +1,9 @@
-// ============================================================
 // middleware/errorMiddleware.js — Centralized Error Handler
-// ============================================================
 
 /**
  * 404 handler — fires when no route matches the request
  */
+
 const notFound = (req, res, next) => {
   const error = new Error(`Route not found: ${req.originalUrl}`);
   res.status(404);
@@ -15,6 +14,7 @@ const notFound = (req, res, next) => {
  * Global error handler — catches all errors thrown in the app.
  * Returns consistent JSON error responses.
  */
+
 const errorHandler = (err, req, res, next) => {
   // Sometimes Express passes a 200 even on error — default to 500
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;

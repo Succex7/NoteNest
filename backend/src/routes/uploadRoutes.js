@@ -1,6 +1,4 @@
-// ============================================================
 // routes/uploadRoutes.js — File upload routes (Cloudinary)
-// ============================================================
 
 import express from "express";
 import { uploadFile, deleteFile } from "../controllers/uploadController.js";
