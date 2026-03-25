@@ -1,22 +1,18 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
+// server.js — Entry point for the NoteNest backend
+// Boots up the Express app and connects to MongoDB
 
+import app from "./src/app.js";
+import connectDB from "./src/config/db.js";
+import dotenv from "dotenv";
+
+// Load environment variables
 dotenv.config();
-
-const app = express();
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Test route
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Connect to MongoDB, then start the server
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 NoteNest server running on port ${PORT}`);
+  });
 });

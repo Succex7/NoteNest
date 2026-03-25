@@ -1,0 +1,18 @@
+// ============================================================
+// config/cloudinary.js — Cloudinary SDK configuration
+// Used for uploading images and files from the app
+// ============================================================
+
+import { v2 as cloudinary } from "cloudinary";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+// Configure Cloudinary with credentials from .env
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, // Insert Cloudinary cloud name here
+  api_key: process.env.CLOUDINARY_API_KEY,       // Insert Cloudinary API key here
+  api_secret: process.env.CLOUDINARY_API_SECRET, // Insert Cloudinary API secret here
+});
+
+export default cloudinary;
