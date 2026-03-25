@@ -1,7 +1,5 @@
-// ============================================================
 // app.js — Express app configuration
 // Registers middleware, routes, and error handlers
-// ============================================================
 
 import express from "express";
 import cors from "cors";
@@ -26,9 +24,8 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const app = express();
 
-// ─────────────────────────────────────────
+
 // Security Middleware
-// ─────────────────────────────────────────
 
 // Set secure HTTP headers
 app.use(helmet());
@@ -50,7 +47,7 @@ app.use("/api/upload", uploadRoutes);
 // General rate limiter — applies to all routes
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,                  // max 100 requests per window
+  max: 100, // max 100 requests per window
   message: {
     message: "Too many requests from this IP, please try again later.",
   },
@@ -60,9 +57,7 @@ const globalLimiter = rateLimit({
 
 app.use(globalLimiter);
 
-// ─────────────────────────────────────────
 // General Middleware
-// ─────────────────────────────────────────
 
 // Parse incoming JSON requests
 app.use(express.json({ limit: "10mb" }));
@@ -75,26 +70,22 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// ─────────────────────────────────────────
+
 // Health Check Route
-// ─────────────────────────────────────────
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok", message: "NoteNest API is running 🚀" });
 });
 
-// ─────────────────────────────────────────
+
 // API Routes
-// ─────────────────────────────────────────
 
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/folders", folderRoutes);
 app.use("/api/ai", aiRoutes);
 
-// ─────────────────────────────────────────
 // Error Handling Middleware (must be last)
-// ─────────────────────────────────────────
 
 app.use(notFound);
 app.use(errorHandler);

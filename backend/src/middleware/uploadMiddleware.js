@@ -1,7 +1,5 @@
-// ============================================================
 // middleware/uploadMiddleware.js — Multer config for file uploads
 // Stores files in memory before pushing to Cloudinary
-// ============================================================
 
 import multer from "multer";
 
@@ -29,7 +27,7 @@ const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB max file size
+    fileSize: 10 * 1024 * 1024, // 10MB max file size
   },
 });
 

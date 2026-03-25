@@ -1,6 +1,4 @@
-// ============================================================
 // routes/folderRoutes.js — Folder management routes
-// ============================================================
 
 import express from "express";
 import {

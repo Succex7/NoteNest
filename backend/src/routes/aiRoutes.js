@@ -1,6 +1,4 @@
-// ============================================================
 // routes/aiRoutes.js — AI feature routes
-// ============================================================
 
 import express from "express";
 import { summarize, explain, ask, chat } from "../controllers/aiController.js";

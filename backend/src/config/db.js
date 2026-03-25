@@ -1,13 +1,10 @@
-// ============================================================
 // config/db.js — MongoDB connection setup via Mongoose
-// ============================================================
 
 import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
-      // These options keep the connection stable and clean
       serverSelectionTimeoutMS: 5000,
     });
 

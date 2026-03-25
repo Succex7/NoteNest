@@ -10,9 +10,9 @@ dotenv.config();
 
 // Configure Cloudinary with credentials from .env
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, // Insert Cloudinary cloud name here
-  api_key: process.env.CLOUDINARY_API_KEY,       // Insert Cloudinary API key here
-  api_secret: process.env.CLOUDINARY_API_SECRET, // Insert Cloudinary API secret here
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY,       
+  api_secret: process.env.CLOUDINARY_API_SECRET, 
 });
 
 export default cloudinary;

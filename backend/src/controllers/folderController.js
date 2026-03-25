@@ -1,17 +1,14 @@
-// ============================================================
 // controllers/folderController.js — Folder CRUD logic
-// ============================================================
 
 import Folder from "../models/folder.js";
 import Note from "../models/note.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 
-// ─────────────────────────────────────────
 // @desc    Create a new folder
 // @route   POST /api/folders
 // @access  Private
-// ─────────────────────────────────────────
+
 const createFolder = asyncHandler(async (req, res) => {
   const { name } = req.body;
 
@@ -33,11 +30,10 @@ const createFolder = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Get all folders for the logged-in user
 // @route   GET /api/folders
 // @access  Private
-// ─────────────────────────────────────────
+
 const getFolders = asyncHandler(async (req, res) => {
   const { sort = "createdAt" } = req.query;
 
@@ -56,12 +52,10 @@ const getFolders = asyncHandler(async (req, res) => {
   });
 });
 
-
-// ─────────────────────────────────────────
 // @desc    Rename a folder
 // @route   PUT /api/folders/:id
 // @access  Private
-// ─────────────────────────────────────────
+
 const renameFolder = asyncHandler(async (req, res) => {
   const { name } = req.body;
 
@@ -91,11 +85,10 @@ const renameFolder = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Delete a folder (and optionally its notes)
 // @route   DELETE /api/folders/:id
 // @access  Private
-// ─────────────────────────────────────────
+
 const deleteFolder = asyncHandler(async (req, res) => {
   // deleteNotes=true will delete all notes inside the folder
   const { deleteNotes } = req.query;

@@ -1,7 +1,5 @@
-// ============================================================
 // controllers/authController.js — Auth logic
 // Register, Login, Get Profile, Update, Reset Password, Delete
-// ============================================================
 
 import crypto from "crypto";
 import User from "../models/user.js";
@@ -12,11 +10,10 @@ import sendEmail from "../utils/sendEmail.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 
-// ─────────────────────────────────────────
 // @desc    Register a new user
 // @route   POST /api/auth/register
 // @access  Public
-// ─────────────────────────────────────────
+
 const register = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -50,11 +47,10 @@ const register = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Login a user
 // @route   POST /api/auth/login
 // @access  Public
-// ─────────────────────────────────────────
+
 const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -93,11 +89,10 @@ const login = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Get current logged-in user
 // @route   GET /api/auth/me
 // @access  Private
-// ─────────────────────────────────────────
+
 const getMe = asyncHandler(async (req, res) => {
   // req.user is attached by the protect middleware
   const user = req.user;
@@ -115,11 +110,10 @@ const getMe = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Update username or email
 // @route   PUT /api/auth/update-profile
 // @access  Private
-// ─────────────────────────────────────────
+
 const updateProfile = asyncHandler(async (req, res) => {
   const { username, email } = req.body;
 
@@ -149,11 +143,10 @@ const updateProfile = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Request a password reset email
 // @route   POST /api/auth/forgot-password
 // @access  Public
-// ─────────────────────────────────────────
+
 const forgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
@@ -216,11 +209,10 @@ const forgotPassword = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Reset password using the token from email
 // @route   PUT /api/auth/reset-password/:token
 // @access  Public
-// ─────────────────────────────────────────
+
 const resetPassword = asyncHandler(async (req, res) => {
   const { token } = req.params;
   const { password } = req.body;
@@ -257,11 +249,10 @@ const resetPassword = asyncHandler(async (req, res) => {
 });
 
 
-// ─────────────────────────────────────────
 // @desc    Delete account and all associated data
 // @route   DELETE /api/auth/delete-account
 // @access  Private
-// ─────────────────────────────────────────
+
 const deleteAccount = asyncHandler(async (req, res) => {
   const userId = req.user._id;
 

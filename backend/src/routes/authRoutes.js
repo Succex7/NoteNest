@@ -1,6 +1,4 @@
-// ============================================================
 // routes/authRoutes.js — Authentication routes
-// ============================================================
 
 import express from "express";
 import {

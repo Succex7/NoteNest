@@ -1,6 +1,4 @@
-// ============================================================
 // routes/noteRoutes.js — Notes management routes
-// ============================================================
 
 import express from "express";
 import {
@@ -21,7 +19,7 @@ router.use(protect);
 
 router.post("/", createNote);
 router.get("/", getNotes);
-router.get("/search", searchNotes);         // Must come before /:id
+router.get("/search", searchNotes); // must be before :id route to avoid conflict   
 router.delete("/bulk-delete", bulkDeleteNotes);
 router.get("/:id", getNoteById);
 router.put("/:id", updateNote);

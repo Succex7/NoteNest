@@ -13,6 +13,6 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB, then start the server
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`🚀 NoteNest server running on port ${PORT}`);
+    console.log(`NoteNest server running on port ${PORT}`);
   });
 });

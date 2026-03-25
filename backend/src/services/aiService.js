@@ -1,7 +1,5 @@
-// ============================================================
 // services/aiService.js — Google Gemini AI integration
 // Handles all AI-related operations for notes
-// ============================================================
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
