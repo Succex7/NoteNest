@@ -3,13 +3,13 @@
 
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-import asyncHandler from "../utils/asyncHandler.js";
+
 
 /**
  * Middleware that verifies the JWT token from the Authorization header.
  * Attaches the authenticated user to req.user.
  */
-const protect = asyncHandler(async (req, res, next) => {
+const protect = async (req, res, next) => {
   let token;
 
   // Extract token from "Authorization: Bearer <token>"
@@ -22,7 +22,7 @@ const protect = asyncHandler(async (req, res, next) => {
 
   if (!token) {
     res.status(401);
-    throw new Error("Not authorized — no token provided");
+    return next(new Error("Not authorized — no token provided"));
   }
 
   try {
@@ -34,14 +34,14 @@ const protect = asyncHandler(async (req, res, next) => {
 
     if (!req.user) {
       res.status(401);
-      throw new Error("Not authorized — user not found");
+      return next(new Error("Not authorized — user not found"));
     }
 
     next();
   } catch (error) {
     res.status(401);
-    throw new Error("Not authorized — invalid or expired token");
+    next(new Error("Not authorized — invalid or expired token"));
   }
-});
+};
 
 export { protect };

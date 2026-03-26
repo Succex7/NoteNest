@@ -11,7 +11,7 @@ import {
   deleteAccount,
 } from "../controllers/authController.js";
 import { protect } from "../middleware/authMiddleware.js";
-import authLimiter from "../middleware/rateLimitMiddleware.js";
+import { authLimiter } from "../middleware/rateLimitMiddleware.js";
 
 const router = express.Router();
 

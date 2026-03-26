@@ -3,7 +3,7 @@
 import express from "express";
 import { summarize, explain, ask, chat } from "../controllers/aiController.js";
 import { protect } from "../middleware/authMiddleware.js";
-import aiLimiter from "../middleware/rateLimitMiddleware.js";
+import { aiLimiter } from "../middleware/rateLimitMiddleware.js";
 
 const router = express.Router();
 

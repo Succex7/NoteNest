@@ -2,6 +2,7 @@
 
 import Note from "../models/note.js";
 import asyncHandler from "../utils/asyncHandler.js";
+import cloudinary from "../config/cloudinary.js";
 
 
 // @desc    Create a new note
@@ -139,10 +140,14 @@ const deleteNote = asyncHandler(async (req, res) => {
     throw new Error("Note not found");
   }
 
-  // TODO: If note has a Cloudinary file, delete it here using filePublicId
-  // (Handled in uploadController.js when Cloudinary is integrated)
+  // Delete file from Cloudinary if note has one attached
+if (note.filePublicId) {
+  await cloudinary.uploader.destroy(note.filePublicId, {
+    resource_type: note.fileType === "image" ? "image" : "raw",
+  });
+}
 
-  await note.deleteOne();
+await note.deleteOne();
 
   res.status(200).json({
     success: true,

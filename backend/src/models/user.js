@@ -1,7 +1,7 @@
 // models/User.js — Mongoose schema for User
 
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema(
   {
@@ -54,12 +54,10 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre("save", async function (next) {
   // Only hash if the password field was actually modified
-  if (!this.isModified("password")) return next();
+  if (!this.isModified("password")) return;
 
   const salt = await bcrypt.genSalt(12);
   this.password = await bcrypt.hash(this.password, salt);
-
-  next();
 });
 
 // Instance method: compare passwords
