@@ -1,7 +1,5 @@
-// ============================================================
 // utils/asyncHandler.js — Async error wrapper
 // Wraps async route handlers to forward errors to Express
-// ============================================================
 
 /**
  * Wraps an async function and catches any rejected promise,

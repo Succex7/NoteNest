@@ -1,7 +1,5 @@
-// ============================================================
 // config/cloudinary.js — Cloudinary SDK configuration
 // Used for uploading images and files from the app
-// ============================================================
 
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";

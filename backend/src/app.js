@@ -24,14 +24,10 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 const app = express();
 
-
 // Security Middleware
 
 // Set secure HTTP headers
 app.use(helmet());
-
-// Sanitize user input to prevent NoSQL injection attacks
-app.use(mongoSanitize());
 
 // Enable CORS — restrict origins in production
 app.use(
@@ -41,8 +37,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use("/api/upload", uploadRoutes);
 
 // General rate limiter — applies to all routes
 const globalLimiter = rateLimit({
@@ -70,16 +64,18 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-
 // Health Check Route
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok", message: "NoteNest API is running 🚀" });
 });
 
+// Sanitize user input to prevent NoSQL injection attacks
+app.use(mongoSanitize());
+
 
 // API Routes
-
+app.use("/api/upload", uploadRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/folders", folderRoutes);

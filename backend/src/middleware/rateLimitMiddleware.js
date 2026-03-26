@@ -23,7 +23,7 @@ const authLimiter = rateLimit({
  */
 const aiLimiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 30,                   // 30 AI requests per window
+  max: 50,                   // 50 AI requests per window
   message: {
     success: false,
     message: "Too many AI requests. Please slow down.",
