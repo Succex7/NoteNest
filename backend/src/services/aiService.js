@@ -1,68 +1,52 @@
-// services/aiService.js — Google Gemini AI integration
-// Handles all AI-related operations for notes
+import OpenAI from "openai";
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
+const groq = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1",
+});
 
-// Initialize Gemini client using the API key from .env
-const genAI = new GoogleGenerativeAI(process.env.AI_API_KEY);
-
-// Using Gemini 2.0 Flash — fast and capable
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
-
-/**
- * Summarizes a note's content.
- * @param {string} content
- * @returns {string} summary
- */
 const summarizeNote = async (content) => {
-  const result = await model.generateContent(
-    `Summarize the following note clearly and concisely in 3-5 sentences:\n\n${content}`
-  );
-
-  return result.response.text();
+  const result = await groq.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    messages: [{ role: "user", content: `Summarize this:\n\n${content}` }],
+  });
+  return result.choices[0].message.content;
 };
 
-
-/**
- * Explains or simplifies a note's content.
- * @param {string} content
- * @returns {string} explanation
- */
 const explainNote = async (content) => {
-  const result = await model.generateContent(
-    `Explain the following note in simple, easy-to-understand language:\n\n${content}`
-  );
-
-  return result.response.text();
+  const result = await groq.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    messages: [{ role: "user", content: `Explain this in simple terms:\n\n${content}` }],
+  });
+  return result.choices[0].message.content;
 };
 
-
-/**
- * Answers a user question based on the context of a note.
- * @param {string} content - The note content (context)
- * @param {string} question - The user's question
- * @returns {string} AI answer
- */
 const askAboutNote = async (content, question) => {
-  const result = await model.generateContent(
-    `Using only the following note as context, answer the question below.\n\nNote:\n${content}\n\nQuestion: ${question}`
-  );
-
-  return result.response.text();
+  const result = await groq.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    messages: [{ role: "user", content: `Note:\n${content}\n\nQuestion: ${question}` }],
+  });
+  return result.choices[0].message.content;
 };
 
-
-/**
- * General AI chat — no note context required.
- * @param {string} userMessage
- * @returns {string} AI response
- */
 const generalChat = async (userMessage) => {
-  const result = await model.generateContent(userMessage);
-
-  return result.response.text();
+  const result = await groq.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    messages: [{ role: "user", content: userMessage }],
+  });
+  return result.choices[0].message.content;
 };
 
+// Summarize from file content (PDF text)
+const summarizeFile = async (extractedText) => {
+  const result = await client.chat.completions.create({
+    model: MODEL,
+    messages: [{ 
+      role: "user", 
+      content: `Summarize the following document clearly and concisely:\n\n${extractedText}` 
+    }],
+  });
+  return result.choices[0].message.content;
+};
 
-export { summarizeNote, explainNote, askAboutNote, generalChat };
+export { summarizeNote, explainNote, askAboutNote, generalChat, summarizeFile };
