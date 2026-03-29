@@ -1,7 +1,5 @@
-// ============================================================
 // utils/sendEmail.js — Email utility using Nodemailer
 // Used for password reset emails
-// ============================================================
 
 import nodemailer from "nodemailer";
 
