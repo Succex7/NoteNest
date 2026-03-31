@@ -10,12 +10,12 @@ import nodemailer from "nodemailer";
 const sendEmail = async ({ to, subject, html }) => {
   // Create a transporter using your email service credentials from .env
   const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,     // e.g. smtp.gmail.com — insert your SMTP host
-    port: process.env.EMAIL_PORT,     // e.g. 587
-    secure: false,                    // true for 465, false for 587
+    host: process.env.EMAIL_HOST,     
+    port: process.env.EMAIL_PORT,     
+    secure: false,                    
     auth: {
-      user: process.env.EMAIL_USER,   // Insert your email address here
-      pass: process.env.EMAIL_PASS,   // Insert your email password or app password here
+      user: process.env.EMAIL_USER,   
+      pass: process.env.EMAIL_PASS,   
     },
   });
 
