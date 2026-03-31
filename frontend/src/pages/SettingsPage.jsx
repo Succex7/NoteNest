@@ -167,7 +167,7 @@ export default function SettingsPage() {
             </div>
             <button
               onClick={() => setDeleteDialogOpen(true)}
-              className="rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+              className="whitespace-nowrap rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
             >
               Delete Account
             </button>
