@@ -1,4 +1,5 @@
 // src/pages/AIToolsPage.jsx
+// "AI" must be in caps when naming file
 
 import { useState } from 'react'
 import { FileText, HelpCircle, Sparkles, Send } from 'lucide-react'
