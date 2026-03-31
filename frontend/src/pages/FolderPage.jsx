@@ -109,27 +109,27 @@ export default function FolderPage() {
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold text-[var(--foreground)]">
+              <h1 className="text-2xl font-bold text-foreground">
                 {folder?.name || '...'}
               </h1>
               <div className="relative">
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
-                  className="flex h-8 w-8 items-center justify-center rounded-md text-[var(--muted-foreground)] transition-colors hover:bg-[var(--secondary)]"
+                  className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary"
                 >
                   <MoreVertical className="h-4 w-4" />
                 </button>
                 {menuOpen && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />
-                    <div className="absolute left-0 top-9 z-20 w-40 rounded-lg border border-[var(--border)] bg-[var(--card)] shadow-lg">
+                    <div className="absolute left-0 top-9 z-20 w-40 rounded-lg border border-border bg-card shadow-lg">
                       <button
                         onClick={() => { setMenuOpen(false); setRenameDialogOpen(true) }}
-                        className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]"
+                        className="flex w-full items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary"
                       >
                         <Pencil className="h-4 w-4" /> Rename
                       </button>
-                      <div className="border-t border-[var(--border)]" />
+                      <div className="border-t border-border" />
                       <button
                         onClick={() => { setMenuOpen(false); setDeleteDialogOpen(true) }}
                         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-500/10"
@@ -141,13 +141,13 @@ export default function FolderPage() {
                 )}
               </div>
             </div>
-            <p className="mt-1 text-[var(--muted-foreground)]">
+            <p className="mt-1 text-muted-foreground">
               {isLoading ? '...' : `${folderNotes.length} ${folderNotes.length === 1 ? 'note' : 'notes'}`}
             </p>
           </div>
           <button
             onClick={() => navigate('/notes/new')}
-            className="flex items-center gap-2 rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90"
+            className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             <Plus className="h-4 w-4" />
             New Note
@@ -176,7 +176,7 @@ export default function FolderPage() {
         {/* FAB */}
         <button
           onClick={() => navigate('/notes/new')}
-          className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg transition-opacity hover:opacity-90 md:hidden"
+          className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-opacity hover:opacity-90 md:hidden"
         >
           <Plus className="h-6 w-6" />
         </button>
@@ -185,27 +185,27 @@ export default function FolderPage() {
         {renameDialogOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/50" onClick={() => setRenameDialogOpen(false)} />
-            <div className="relative w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-xl">
-              <h2 className="mb-4 text-lg font-semibold text-[var(--foreground)]">Rename Folder</h2>
+            <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-xl">
+              <h2 className="mb-4 text-lg font-semibold text-foreground">Rename Folder</h2>
               <input
                 type="text"
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleRename()}
                 autoFocus
-                className="mb-4 w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)]"
+                className="mb-4 w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
               />
               <div className="flex gap-2">
                 <button
                   onClick={() => setRenameDialogOpen(false)}
-                  className="flex-1 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-medium hover:bg-[var(--secondary)]"
+                  className="flex-1 rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-secondary"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleRename}
                   disabled={isRenaming}
-                  className="flex-1 rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] disabled:opacity-50"
+                  className="flex-1 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
                 >
                   {isRenaming ? 'Renaming...' : 'Rename'}
                 </button>
@@ -218,15 +218,15 @@ export default function FolderPage() {
         {deleteDialogOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/50" onClick={() => setDeleteDialogOpen(false)} />
-            <div className="relative w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-xl">
-              <h2 className="mb-2 text-lg font-semibold text-[var(--foreground)]">Delete Folder</h2>
-              <p className="mb-6 text-sm text-[var(--muted-foreground)]">
+            <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-xl">
+              <h2 className="mb-2 text-lg font-semibold text-foreground">Delete Folder</h2>
+              <p className="mb-6 text-sm text-muted-foreground">
                 Are you sure you want to delete "{folder?.name}"? Notes inside will be moved to Uncategorized.
               </p>
               <div className="flex gap-2">
                 <button
                   onClick={() => setDeleteDialogOpen(false)}
-                  className="flex-1 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-medium hover:bg-[var(--secondary)]"
+                  className="flex-1 rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-secondary"
                 >
                   Cancel
                 </button>

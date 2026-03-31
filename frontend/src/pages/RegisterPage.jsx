@@ -58,22 +58,22 @@ export default function RegisterPage() {
     }`
 
   return (
-    <div className="flex min-h-screen flex-col bg-[var(--background)]">
-      <header className="flex h-16 items-center justify-between border-b border-[var(--border)] px-4">
+    <div className="flex min-h-screen flex-col bg-background">
+      <header className="flex h-16 items-center justify-between border-b border-border px-4">
         <Logo href="/" size="sm" />
         <ThemeToggle />
       </header>
 
       <main className="flex flex-1 items-center justify-center p-4">
-        <div className="w-full max-w-md rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm sm:p-8">
+        <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-sm sm:p-8">
           <div className="mb-6 text-center">
-            <h1 className="text-2xl font-bold text-[var(--foreground)]">Create an account</h1>
-            <p className="mt-1 text-sm text-[var(--muted-foreground)]">Get started with NoteNest for free</p>
+            <h1 className="text-2xl font-bold text-foreground">Create an account</h1>
+            <p className="mt-1 text-sm text-muted-foreground">Get started with NoteNest for free</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Username</label>
+              <label className="mb-1.5 block text-sm font-medium text-foreground">Username</label>
               <input
                 type="text"
                 placeholder="johndoe"
@@ -85,7 +85,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Email</label>
+              <label className="mb-1.5 block text-sm font-medium text-foreground">Email</label>
               <input
                 type="email"
                 placeholder="john@example.com"
@@ -97,7 +97,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Password</label>
+              <label className="mb-1.5 block text-sm font-medium text-foreground">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -109,7 +109,7 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -120,11 +120,11 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-md bg-[var(--primary)] py-2.5 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--primary-foreground)] border-t-transparent" />
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
                   Creating account...
                 </span>
               ) : (
@@ -133,9 +133,9 @@ export default function RegisterPage() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-[var(--muted-foreground)]">
+          <p className="mt-6 text-center text-sm text-muted-foreground">
             Already have an account?{' '}
-            <Link to="/login" className="font-medium text-[var(--primary)] hover:underline">
+            <Link to="/login" className="font-medium text-primary hover:underline">
               Login
             </Link>
           </p>
