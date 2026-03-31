@@ -135,18 +135,21 @@ export default function SettingsPage() {
               </div>
             </div>
             {/* Toggle switch */}
-            <button
-              onClick={toggleTheme}
-              className={`relative h-6 w-11 rounded-full transition-colors ${
-                theme === 'dark' ? 'bg-[var(--primary)]' : 'bg-[var(--border)]'
+            {/* Toggle switch — FIXED colors */}
+          <button
+            onClick={toggleTheme}
+            className={`relative h-6 w-11 rounded-full transition-colors ${
+              theme === 'dark' ? 'bg-white' : 'bg-[var(--border)]'
+            }`}
+          >
+            <span
+              className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full transition-transform ${
+                theme === 'dark'
+                  ? 'translate-x-5 bg-black'   // ← dark mode: black thumb, white track
+                  : 'translate-x-0 bg-white'   // ← light mode: white thumb, grey track
               }`}
-            >
-              <span
-                className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
-                  theme === 'dark' ? 'translate-x-5' : 'translate-x-0'
-                }`}
-              />
-            </button>
+            />
+          </button>
           </div>
         </div>
 

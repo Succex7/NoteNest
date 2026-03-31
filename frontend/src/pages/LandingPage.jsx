@@ -28,13 +28,13 @@ export default function LandingPage() {
             <ThemeToggle />
             <Link
               to="/login"
-              className="rounded-md px-4 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--secondary)]"
+              className="whitespace-nowrap shrink-0 rounded-md px-3 py-2 text-sm font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--secondary)]"
             >
               Login
             </Link>
             <Link
               to="/register"
-              className="rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90"
+              className="whitespace-nowrap shrink-0 rounded-md bg-[var(--primary)] px-3 py-2 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90"
             >
               Get Started
             </Link>

@@ -10,10 +10,10 @@ export default function Logo({ size = 'md', href = '/', className }) {
 
   const content = (
     <div className={cn('flex items-center gap-2', className)}>
-      <div className="flex items-center justify-center rounded-lg bg-[var(--primary)] p-1.5">
-        <FileText className={cn('text-[var(--primary-foreground)]', iconSizes[size])} />
+      <div className="flex items-center justify-center rounded-lg bg-primary p-1.5">
+        <FileText className={cn('text-primary-foreground', iconSizes[size])} />
       </div>
-      <span className={cn('font-bold text-[var(--foreground)]', sizes[size])}>NoteNest</span>
+      <span className={cn('font-bold text-foreground', sizes[size])}>NoteNest</span>
     </div>
   )
 

@@ -1,4 +1,4 @@
-// src/pages/LoginPage.jsx (FIXED — proper errors + login flow)
+// src/pages/LoginPage.jsx
 
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -32,20 +32,15 @@ export default function LoginPage() {
     if (!validate()) return
     setIsLoading(true)
     try {
-      const res = await loginUser(formData)
-      const { token, data } = res.data
-
-      // Login sets token on axios AND localStorage synchronously
-      login(data, token)
-
+    const res = await loginUser(formData)
+    const token = res.data.data.token
+    const userData = res.data.data
+    login(userData, token)
       toast.success('Welcome back!')
-
-      // Small delay to ensure state propagates before navigation
-      setTimeout(() => navigate('/dashboard'), 100)
+      navigate('/dashboard', { replace: true })
     } catch (err) {
       const msg = getErrorMessage(err)
       toast.error(msg)
-      // Show inline error for credential issues
       if (err?.response?.status === 401) {
         setErrors({ password: 'Invalid email or password' })
       }
@@ -56,7 +51,6 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--background)]">
-      {/* Header — fixed mobile layout */}
       <header className="flex h-16 items-center justify-between border-b border-[var(--border)] px-4">
         <Logo href="/" size="sm" />
         <ThemeToggle />
@@ -70,7 +64,6 @@ export default function LoginPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-            {/* Email */}
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Email</label>
               <input
@@ -88,7 +81,6 @@ export default function LoginPage() {
               {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
             </div>
 
-            {/* Password */}
             <div>
               <div className="mb-1.5 flex items-center justify-between">
                 <label className="text-sm font-medium text-[var(--foreground)]">Password</label>

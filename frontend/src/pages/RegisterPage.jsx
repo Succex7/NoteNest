@@ -1,4 +1,4 @@
-// src/pages/RegisterPage.jsx (FIXED — inline errors + spinner)
+// src/pages/RegisterPage.jsx
 
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -36,10 +36,11 @@ export default function RegisterPage() {
     setIsLoading(true)
     try {
       const res = await registerUser(formData)
-      const { token, data } = res.data
-      login(data, token)
+      const token = res.data.data.token
+      const userData = res.data.data
+      login(userData, token)
       toast.success('Account created successfully!')
-      setTimeout(() => navigate('/dashboard'), 100)
+      navigate('/dashboard', { replace: true })
     } catch (err) {
       const msg = getErrorMessage(err)
       toast.error(msg)
@@ -71,7 +72,6 @@ export default function RegisterPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-            {/* Username */}
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Username</label>
               <input
@@ -84,7 +84,6 @@ export default function RegisterPage() {
               {errors.username && <p className="mt-1 text-xs text-red-500">{errors.username}</p>}
             </div>
 
-            {/* Email */}
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Email</label>
               <input
@@ -97,7 +96,6 @@ export default function RegisterPage() {
               {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
             </div>
 
-            {/* Password */}
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Password</label>
               <div className="relative">

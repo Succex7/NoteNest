@@ -31,20 +31,28 @@ export default function FolderPage() {
     return noteFolderId === id
   })
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [notesRes, foldersRes] = await Promise.all([getNotes(), getFolders()])
-        setAllNotes(notesRes.data.data)
-        setAllFolders(foldersRes.data.data)
-      } catch (err) {
-        toast.error(getErrorMessage(err))
-      } finally {
-        setIsLoading(false)
-      }
+ useEffect(() => {
+  // Small guard — wait for token to be ready
+  const token = localStorage.getItem('notenest_token')
+  if (!token) return
+
+  const fetchData = async () => {
+    try {
+      const [notesRes, foldersRes] = await Promise.all([
+        getNotes(),
+        getFolders()
+      ])
+      setAllNotes(notesRes.data.data)
+      setAllFolders(foldersRes.data.data)
+    } catch (err) {
+      toast.error(getErrorMessage(err))
+    } finally {
+      setIsLoading(false)
     }
-    fetchData()
-  }, [id])
+  }
+  fetchData()
+}, [id])
+
 
   useEffect(() => {
     if (folder) setNewName(folder.name)
