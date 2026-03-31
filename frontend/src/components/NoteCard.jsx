@@ -44,20 +44,20 @@ export default function NoteCard({ note }) {
 
   return (
     <>
-      <div className="group relative rounded-xl border border-[var(--border)] bg-[var(--card)] transition-all hover:shadow-md">
+      <div className="group relative rounded-xl border border-border bg-card transition-all hover:shadow-md">
         {/* Clickable overlay */}
         <Link to={`/notes/${note._id}`} className="absolute inset-0 z-10 rounded-xl" />
 
         <div className="p-5">
           {/* Header */}
           <div className="mb-2 flex items-start justify-between">
-            <h3 className="flex-1 pr-6 font-semibold text-[var(--foreground)] line-clamp-1">
+            <h3 className="flex-1 pr-6 font-semibold text-foreground line-clamp-1">
               {note.title}
             </h3>
             <div className="relative z-20">
               <button
                 onClick={(e) => { e.preventDefault(); setMenuOpen(!menuOpen) }}
-                className="flex h-7 w-7 items-center justify-center rounded-md text-[var(--muted-foreground)] opacity-0 transition-all group-hover:opacity-100 hover:bg-[var(--secondary)]"
+                className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-all group-hover:opacity-100 hover:bg-secondary"
               >
                 <MoreVertical className="h-4 w-4" />
               </button>
@@ -65,23 +65,23 @@ export default function NoteCard({ note }) {
               {menuOpen && (
                 <>
                   <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />
-                  <div className="absolute right-0 top-8 z-20 w-48 rounded-lg border border-[var(--border)] bg-[var(--card)] shadow-lg">
+                  <div className="absolute right-0 top-8 z-20 w-48 rounded-lg border border-border bg-card shadow-lg">
                     <button
                       onClick={(e) => { e.preventDefault(); navigate(`/notes/${note._id}`); setMenuOpen(false) }}
-                      className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[var(--foreground)] transition-colors hover:bg-[var(--secondary)]"
+                      className="flex w-full items-center gap-2 px-3 py-2 text-sm text-foreground transition-colors hover:bg-secondary"
                     >
                       <Pencil className="h-4 w-4" /> Edit
                     </button>
 
                     {/* Move to folder submenu */}
                     <div className="group/sub relative">
-                      <button className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[var(--foreground)] transition-colors hover:bg-[var(--secondary)]">
+                      <button className="flex w-full items-center gap-2 px-3 py-2 text-sm text-foreground transition-colors hover:bg-secondary">
                         <FolderInput className="h-4 w-4" /> Move to folder
                       </button>
-                      <div className="absolute left-full top-0 hidden w-40 rounded-lg border border-[var(--border)] bg-[var(--card)] shadow-lg group-hover/sub:block">
+                      <div className="absolute left-full top-0 hidden w-40 rounded-lg border border-border bg-card shadow-lg group-hover/sub:block">
                         <button
                           onClick={(e) => { e.preventDefault(); handleMoveToFolder(null) }}
-                          className="w-full px-3 py-2 text-left text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]"
+                          className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
                         >
                           No folder
                         </button>
@@ -89,7 +89,7 @@ export default function NoteCard({ note }) {
                           <button
                             key={f._id}
                             onClick={(e) => { e.preventDefault(); handleMoveToFolder(f._id) }}
-                            className="w-full px-3 py-2 text-left text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]"
+                            className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
                           >
                             {f.name}
                           </button>
@@ -97,7 +97,7 @@ export default function NoteCard({ note }) {
                       </div>
                     </div>
 
-                    <div className="my-1 border-t border-[var(--border)]" />
+                    <div className="my-1 border-t border-border" />
                     <button
                       onClick={(e) => { e.preventDefault(); setMenuOpen(false); setDeleteDialogOpen(true) }}
                       className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-500 transition-colors hover:bg-red-500/10"
@@ -111,25 +111,25 @@ export default function NoteCard({ note }) {
           </div>
 
           {/* Content preview */}
-          <p className="mb-3 text-sm text-[var(--muted-foreground)] line-clamp-2">
+          <p className="mb-3 text-sm text-muted-foreground line-clamp-2">
             {note.content || 'No content'}
           </p>
 
           {/* Badges */}
           <div className="flex flex-wrap items-center gap-2">
             {folder && (
-              <span className="rounded-full bg-[var(--secondary)] px-2 py-0.5 text-xs text-[var(--secondary-foreground)]">
+              <span className="rounded-full bg-secondary px-2 py-0.5 text-xs text-secondary-foreground">
                 {folder.name}
               </span>
             )}
             {note.fileUrl && (
-              <span className="flex items-center gap-1 rounded-full border border-[var(--border)] px-2 py-0.5 text-xs text-[var(--muted-foreground)]">
+              <span className="flex items-center gap-1 rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground">
                 <Paperclip className="h-3 w-3" /> File
               </span>
             )}
           </div>
 
-          <p className="mt-3 text-xs text-[var(--muted-foreground)]">
+          <p className="mt-3 text-xs text-muted-foreground">
             {formatDate(note.updatedAt)}
           </p>
         </div>
@@ -139,15 +139,15 @@ export default function NoteCard({ note }) {
       {deleteDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50" onClick={() => setDeleteDialogOpen(false)} />
-          <div className="relative w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-xl">
-            <h2 className="mb-2 text-lg font-semibold text-[var(--foreground)]">Delete Note</h2>
-            <p className="mb-6 text-sm text-[var(--muted-foreground)]">
+          <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-xl">
+            <h2 className="mb-2 text-lg font-semibold text-foreground">Delete Note</h2>
+            <p className="mb-6 text-sm text-muted-foreground">
               Are you sure you want to delete "{note.title}"? This cannot be undone.
             </p>
             <div className="flex gap-2">
               <button
                 onClick={() => setDeleteDialogOpen(false)}
-                className="flex-1 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-medium transition-colors hover:bg-[var(--secondary)]"
+                className="flex-1 rounded-md border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-secondary"
               >
                 Cancel
               </button>

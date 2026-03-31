@@ -172,7 +172,7 @@ export default function NoteEditorPage() {
     return (
       <DashboardLayout>
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--primary)] border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
         </div>
       </DashboardLayout>
     )
@@ -182,11 +182,11 @@ export default function NoteEditorPage() {
     <DashboardLayout>
       <div className="relative mx-auto flex h-[calc(100vh-8rem)] max-w-4xl flex-col">
         {/* Top Bar */}
-        <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
+        <div className="flex items-center justify-between border-b border-border pb-4">
           <div className="flex min-w-0 flex-1 items-center gap-2">
             <button
               onClick={() => navigate(-1)}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-[var(--muted-foreground)] transition-colors hover:bg-[var(--secondary)]"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary"
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
@@ -195,7 +195,7 @@ export default function NoteEditorPage() {
               placeholder="Note title..."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="min-w-0 flex-1 bg-transparent text-xl font-semibold text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:outline-none md:text-2xl"
+              className="min-w-0 flex-1 bg-transparent text-xl font-semibold text-foreground placeholder:text-muted-foreground focus:outline-none md:text-2xl"
             />
           </div>
 
@@ -203,7 +203,7 @@ export default function NoteEditorPage() {
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="flex items-center gap-2 rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               <Save className="h-4 w-4" />
               <span className="hidden sm:inline">{isSaving ? 'Saving...' : 'Save'}</span>
@@ -213,23 +213,23 @@ export default function NoteEditorPage() {
               <div className="relative">
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
-                  className="flex h-9 w-9 items-center justify-center rounded-md text-[var(--muted-foreground)] transition-colors hover:bg-[var(--secondary)]"
+                  className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary"
                 >
                   <MoreVertical className="h-5 w-5" />
                 </button>
                 {menuOpen && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />
-                    <div className="absolute right-0 top-10 z-20 w-48 rounded-lg border border-[var(--border)] bg-[var(--card)] shadow-lg">
+                    <div className="absolute right-0 top-10 z-20 w-48 rounded-lg border border-border bg-card shadow-lg">
                       {/* Move to folder */}
                       <div className="group/sub relative">
-                        <button className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]">
+                        <button className="flex w-full items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-secondary">
                           <FolderInput className="h-4 w-4" /> Move to folder
                         </button>
-                        <div className="absolute left-full top-0 hidden w-40 rounded-lg border border-[var(--border)] bg-[var(--card)] shadow-lg group-hover/sub:block">
+                        <div className="absolute left-full top-0 hidden w-40 rounded-lg border border-border bg-card shadow-lg group-hover/sub:block">
                           <button
                             onClick={() => { handleMoveToFolder(null); setMenuOpen(false) }}
-                            className="w-full px-3 py-2 text-left text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]"
+                            className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
                           >
                             No folder
                           </button>
@@ -237,14 +237,14 @@ export default function NoteEditorPage() {
                             <button
                               key={f._id}
                               onClick={() => { handleMoveToFolder(f._id); setMenuOpen(false) }}
-                              className="w-full px-3 py-2 text-left text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]"
+                              className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
                             >
                               {f.name}
                             </button>
                           ))}
                         </div>
                       </div>
-                      <div className="my-1 border-t border-[var(--border)]" />
+                      <div className="my-1 border-t border-border" />
                       <button
                         onClick={() => { setMenuOpen(false); setDeleteDialogOpen(true) }}
                         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-500/10"
@@ -262,11 +262,11 @@ export default function NoteEditorPage() {
         {/* Folder indicator */}
         {currentFolder && (
           <div className="mt-4">
-            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--secondary)] px-3 py-1 text-sm text-[var(--muted-foreground)]">
+            <span className="inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1 text-sm text-muted-foreground">
               <FolderInput className="h-3 w-3" />
               {currentFolder.name}
               <button onClick={() => handleMoveToFolder(null)}>
-                <X className="ml-1 h-3 w-3 hover:text-[var(--foreground)]" />
+                <X className="ml-1 h-3 w-3 hover:text-foreground" />
               </button>
             </span>
           </div>
@@ -276,9 +276,9 @@ export default function NoteEditorPage() {
         <div className="flex-1 overflow-hidden py-4">
           <textarea
             placeholder="Start writing your note..."
-            value={content}
+            value={content}   
             onChange={(e) => setContent(e.target.value)}
-            className="h-full w-full resize-none bg-transparent text-base leading-relaxed text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:outline-none"
+            className="h-full w-full resize-none bg-transparent text-base leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none"
           />
         </div>
 
@@ -294,13 +294,13 @@ export default function NoteEditorPage() {
         )}
 
         {/* Bottom toolbar */}
-        <div className="flex items-center justify-between border-t border-[var(--border)] pt-4">
+        <div className="flex items-center justify-between border-t border-border pt-4">
           <div className="flex items-center gap-2">
             {/* Folder picker */}
             <div className="relative">
               <button
                 onClick={() => setFolderMenuOpen(!folderMenuOpen)}
-                className="flex items-center gap-2 rounded-md border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--foreground)] transition-colors hover:bg-[var(--secondary)]"
+                className="flex items-center gap-2 rounded-md border border-border px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-secondary"
               >
                 <FolderInput className="h-4 w-4" />
                 <span className="hidden sm:inline">{currentFolder ? currentFolder.name : 'Folder'}</span>
@@ -308,19 +308,19 @@ export default function NoteEditorPage() {
               {folderMenuOpen && (
                 <>
                   <div className="fixed inset-0 z-10" onClick={() => setFolderMenuOpen(false)} />
-                  <div className="absolute bottom-10 left-0 z-20 w-48 rounded-lg border border-[var(--border)] bg-[var(--card)] shadow-lg">
+                  <div className="absolute bottom-10 left-0 z-20 w-48 rounded-lg border border-border bg-card shadow-lg">
                     <button
                       onClick={() => handleMoveToFolder(null)}
-                      className="w-full px-3 py-2 text-left text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]"
+                      className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
                     >
                       No folder
                     </button>
-                    <div className="border-t border-[var(--border)]" />
+                    <div className="border-t border-border" />
                     {folders.map((f) => (
                       <button
                         key={f._id}
                         onClick={() => handleMoveToFolder(f._id)}
-                        className="w-full px-3 py-2 text-left text-sm text-[var(--foreground)] hover:bg-[var(--secondary)]"
+                        className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
                       >
                         {f.name}
                       </button>
@@ -344,7 +344,7 @@ export default function NoteEditorPage() {
                 fileInputRef.current?.click()
               }}
               disabled={isUploading}
-              className="flex items-center gap-2 rounded-md border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--foreground)] transition-colors hover:bg-[var(--secondary)] disabled:opacity-50"
+              className="flex items-center gap-2 rounded-md border border-border px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-secondary disabled:opacity-50"
             >
               <Paperclip className="h-4 w-4" />
               <span className="hidden sm:inline">{isUploading ? 'Uploading...' : 'Attach'}</span>
@@ -356,7 +356,7 @@ export default function NoteEditorPage() {
                 if (isNew) { toast.error('Save the note first to use AI features'); return }
                 setAiPanelOpen(!aiPanelOpen)
               }}
-              className="flex items-center gap-2 rounded-md border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--foreground)] transition-colors hover:bg-[var(--secondary)]"
+              className="flex items-center gap-2 rounded-md border border-border px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-secondary"
             >
               <Sparkles className="h-4 w-4" />
               <span className="hidden sm:inline">AI</span>
@@ -389,15 +389,15 @@ export default function NoteEditorPage() {
         {deleteDialogOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/50" onClick={() => setDeleteDialogOpen(false)} />
-            <div className="relative w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-xl">
-              <h2 className="mb-2 text-lg font-semibold text-[var(--foreground)]">Delete Note</h2>
-              <p className="mb-6 text-sm text-[var(--muted-foreground)]">
+            <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-xl">
+              <h2 className="mb-2 text-lg font-semibold text-foreground">Delete Note</h2>
+              <p className="mb-6 text-sm text-muted-foreground">
                 Are you sure you want to delete this note? This action cannot be undone.
               </p>
               <div className="flex gap-2">
                 <button
                   onClick={() => setDeleteDialogOpen(false)}
-                  className="flex-1 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-medium transition-colors hover:bg-[var(--secondary)]"
+                  className="flex-1 rounded-md border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-secondary"
                 >
                   Cancel
                 </button>

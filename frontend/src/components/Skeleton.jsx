@@ -3,14 +3,14 @@
 export function Skeleton({ className = '' }) {
   return (
     <div
-      className={`animate-pulse rounded-md bg-[var(--secondary)] ${className}`}
+      className={`animate-pulse rounded-md bg-secondary ${className}`}
     />
   )
 }
 
 export function NoteSkeleton() {
   return (
-    <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-5">
+    <div className="rounded-xl border border-border bg-card p-5">
       <Skeleton className="mb-3 h-5 w-3/4" />
       <Skeleton className="mb-2 h-4 w-full" />
       <Skeleton className="mb-4 h-4 w-2/3" />

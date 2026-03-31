@@ -18,20 +18,28 @@ export default function NotesPage() {
   const { notes, setAllNotes, setAllFolders } = useNotes()
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [notesRes, foldersRes] = await Promise.all([getNotes(), getFolders()])
-        setAllNotes(notesRes.data.data)
-        setAllFolders(foldersRes.data.data)
-      } catch (err) {
-        toast.error(getErrorMessage(err))
-      } finally {
-        setIsLoading(false)
-      }
+useEffect(() => {
+  // Small guard — wait for token to be ready
+  const token = localStorage.getItem('notenest_token')
+  if (!token) return
+
+  const fetchData = async () => {
+    try {
+      const [notesRes, foldersRes] = await Promise.all([
+        getNotes(),
+        getFolders()
+      ])
+      setAllNotes(notesRes.data.data)
+      setAllFolders(foldersRes.data.data)
+    } catch (err) {
+      toast.error(getErrorMessage(err))
+    } finally {
+      setIsLoading(false)
     }
-    fetchData()
-  }, [])
+  }
+  fetchData()
+}, [])
+
 
   return (
     <DashboardLayout>
@@ -39,14 +47,14 @@ export default function NotesPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-[var(--foreground)]">All Notes</h1>
-            <p className="mt-1 text-[var(--muted-foreground)]">
+            <h1 className="text-2xl font-bold text-foreground">All Notes</h1>
+            <p className="mt-1 text-muted-foreground">
               {isLoading ? '...' : `${notes.length} ${notes.length === 1 ? 'note' : 'notes'} total`}
             </p>
           </div>
           <button
             onClick={() => navigate('/notes/new')}
-            className="flex items-center gap-2 rounded-md bg-[var(--primary)] px-4 py-2 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90"
+            className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             <Plus className="h-4 w-4" />
             New Note
@@ -75,7 +83,7 @@ export default function NotesPage() {
         {/* FAB — mobile */}
         <button
           onClick={() => navigate('/notes/new')}
-          className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg transition-opacity hover:opacity-90 md:hidden"
+          className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-opacity hover:opacity-90 md:hidden"
         >
           <Plus className="h-6 w-6" />
         </button>

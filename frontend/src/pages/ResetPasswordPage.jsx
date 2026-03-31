@@ -45,26 +45,26 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[var(--background)]">
-      <header className="flex h-16 items-center justify-between border-b border-[var(--border)] px-4">
+    <div className="flex min-h-screen flex-col bg-background">
+      <header className="flex h-16 items-center justify-between border-b border-border px-4">
         <Logo href="/" />
         <ThemeToggle />
       </header>
 
       <main className="flex flex-1 items-center justify-center p-4">
-        <div className="w-full max-w-md rounded-xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-sm">
+        <div className="w-full max-w-md rounded-xl border border-border bg-card p-8 shadow-sm">
           {isSubmitted ? (
             <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--primary)]/10">
-                <CheckCircle2 className="h-6 w-6 text-[var(--primary)]" />
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--primary)/10">
+                <CheckCircle2 className="h-6 w-6 text-primary" />
               </div>
-              <h1 className="mb-2 text-2xl font-bold text-[var(--foreground)]">Password reset!</h1>
-              <p className="mb-6 text-sm text-[var(--muted-foreground)]">
+              <h1 className="mb-2 text-2xl font-bold text-foreground">Password reset!</h1>
+              <p className="mb-6 text-sm text-muted-foreground">
                 Your password has been successfully reset.
               </p>
               <button
                 onClick={() => navigate('/login')}
-                className="w-full rounded-md bg-[var(--primary)] py-2.5 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90"
+                className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 Continue to login
               </button>
@@ -72,29 +72,29 @@ export default function ResetPasswordPage() {
           ) : (
             <>
               <div className="mb-6 text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--primary)]/10">
-                  <Lock className="h-6 w-6 text-[var(--primary)]" />
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--primary)/10">
+                  <Lock className="h-6 w-6 text-primary" />
                 </div>
-                <h1 className="text-2xl font-bold text-[var(--foreground)]">Reset password</h1>
-                <p className="mt-1 text-sm text-[var(--muted-foreground)]">Enter your new password below</p>
+                <h1 className="text-2xl font-bold text-foreground">Reset password</h1>
+                <p className="mt-1 text-sm text-muted-foreground">Enter your new password below</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* New password */}
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">New Password</label>
+                  <label className="mb-1.5 block text-sm font-medium text-foreground">New Password</label>
                   <div className="relative">
                     <input
                       type={showPassword ? 'text' : 'password'}
                       placeholder="••••••••"
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      className="w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 pr-10 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)]"
+                      className="w-full rounded-md border border-border bg-background px-3 py-2 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -104,19 +104,19 @@ export default function ResetPasswordPage() {
 
                 {/* Confirm password */}
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[var(--foreground)]">Confirm Password</label>
+                  <label className="mb-1.5 block text-sm font-medium text-foreground">Confirm Password</label>
                   <div className="relative">
                     <input
                       type={showConfirm ? 'text' : 'password'}
                       placeholder="••••••••"
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                      className="w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 pr-10 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)]"
+                      className="w-full rounded-md border border-border bg-background px-3 py-2 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     <button
                       type="button"
                       onClick={() => setShowConfirm(!showConfirm)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                     >
                       {showConfirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -127,14 +127,14 @@ export default function ResetPasswordPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full rounded-md bg-[var(--primary)] py-2.5 text-sm font-medium text-[var(--primary-foreground)] transition-opacity hover:opacity-90 disabled:opacity-50"
+                  className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
                 >
                   {isLoading ? 'Resetting...' : 'Reset password'}
                 </button>
               </form>
 
               <p className="mt-6 text-center text-sm">
-                <Link to="/login" className="font-medium text-[var(--primary)] hover:underline">
+                <Link to="/login" className="font-medium text-primary hover:underline">
                   Back to login
                 </Link>
               </p>
