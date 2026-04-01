@@ -180,10 +180,10 @@ export default function NoteEditorPage() {
 
   return (
     <DashboardLayout>
-      <div className="relative mx-auto flex h-[calc(100vh-8rem)] w-full max-w-4xl flex-col overflow-x-hidden px-2 sm:px-4">
+      <div className="relative mx-auto flex h-[calc(100vh-8rem)] w-full max-w-4xl flex-col overflow-hidden px-2 sm:px-0">
         {/* Top Bar */}
-        <div className="flex items-center justify-between border-b border-border pb-4">
-          <div className="flex min-w-0 flex-1 items-center gap-2">
+        <div className="flex min-w-0 items-center justify-between border-b border-border pb-4 gap-2">
+          <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
             <button
               onClick={() => navigate(-1)}
               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary"
@@ -195,7 +195,7 @@ export default function NoteEditorPage() {
               placeholder="Note title..."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="min-w-0 flex-1 bg-transparent text-xl font-semibold text-foreground placeholder:text-muted-foreground focus:outline-none md:text-2xl"
+              className="min-w-0 w-full flex-1 bg-transparent text-lg font-semibold sm:text-xl md:text-2xl text-foreground placeholder:text-muted-foreground focus:outline-none truncate"
             />
           </div>
 

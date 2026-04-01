@@ -62,14 +62,14 @@ export default function SettingsPage() {
 
   return (
     <DashboardLayout>
-      <div className="mx-auto max-w-2xl space-y-6">
+      <div className="mx-auto w-full max-w-2xl space-y-6 overflow-hidden px-2 sm:px-0">
         <div>
           <h1 className="text-2xl font-bold text-foreground">Settings</h1>
           <p className="mt-1 text-muted-foreground">Manage your account and preferences</p>
         </div>
 
         {/* Profile */}
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-6 overflow-hidden">
           <h2 className="mb-1 text-lg font-semibold text-foreground">Profile</h2>
           <p className="mb-6 text-sm text-muted-foreground">Update your personal information</p>
 
@@ -118,7 +118,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Appearance */}
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-6 overflow-hidden">
           <h2 className="mb-1 text-lg font-semibold text-foreground">Appearance</h2>
           <p className="mb-6 text-sm text-muted-foreground">Customize how NoteNest looks</p>
 
@@ -154,7 +154,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Danger Zone */}
-        <div className="rounded-xl border border-red-500/30 bg-card p-6">
+        <div className="rounded-xl border border-red-500/30 bg-card p-6 overflow-hidden">
           <h2 className="mb-1 text-lg font-semibold text-red-500">Danger Zone</h2>
           <p className="mb-6 text-sm text-muted-foreground">Irreversible actions for your account</p>
 
@@ -175,7 +175,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Logout */}
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-6 overflow-hidden">
           <button
             onClick={handleLogout}
             className="w-full rounded-md border border-border py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
@@ -188,7 +188,7 @@ export default function SettingsPage() {
         {deleteDialogOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/50" onClick={() => setDeleteDialogOpen(false)} />
-            <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-xl">
+            <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-6 shadow-xl overflow-hidden">
               <h2 className="mb-2 text-lg font-semibold text-foreground">Delete Account</h2>
               <p className="mb-6 text-sm text-muted-foreground">
                 Are you sure? This will permanently delete your account and all your notes and folders. This cannot be undone.
