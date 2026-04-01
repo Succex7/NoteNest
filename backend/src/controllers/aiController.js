@@ -3,7 +3,9 @@
 import Note from "../models/note.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import axios from "axios";
-import { default as pdfParse } from 'pdf-parse/lib/pdf-parse.js'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const pdfParse = require('pdf-parse');
 import {
   summarizeNote,
   explainNote,
