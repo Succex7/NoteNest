@@ -180,7 +180,7 @@ export default function NoteEditorPage() {
 
   return (
     <DashboardLayout>
-      <div className="relative mx-auto flex h-[calc(100vh-8rem)] max-w-4xl flex-col">
+      <div className="relative mx-auto flex h-[calc(100vh-8rem)] w-full max-w-4xl flex-col overflow-x-hidden px-2 sm:px-4">
         {/* Top Bar */}
         <div className="flex items-center justify-between border-b border-border pb-4">
           <div className="flex min-w-0 flex-1 items-center gap-2">
@@ -273,13 +273,13 @@ export default function NoteEditorPage() {
         )}
 
         {/* Editor */}
-        <div className="flex-1 overflow-hidden py-4">
+        <div className="flex-1 overflow-hidden py-4 w-full max-w-full">
           <textarea
-            placeholder="Start writing your note..."
-            value={content}   
-            onChange={(e) => setContent(e.target.value)}
-            className="h-full w-full resize-none bg-transparent text-base leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none"
-          />
+          placeholder="Start writing your note..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className="h-full w-full max-w-full resize-none bg-transparent text-base leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none wrap-break-word whitespace-pre-wrap overflow-x-hidden"
+        />
         </div>
 
         {/* File attachment preview */}
