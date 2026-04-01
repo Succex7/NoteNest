@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoteNest</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="popup-container">
+
+    <!-- AUTH SCREEN -->
+    <div id="auth-screen" class="hidden">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <span class="logo-text">NoteNest</span>
+      </div>
+      <h2>Sign in to NoteNest</h2>
+      <p>Save and summarize content from anywhere on the web</p>
+
+      <div class="auth-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="auth-email" class="input" placeholder="your@email.com" />
+          <div class="error-msg" id="email-error"></div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="auth-password" class="input" placeholder="••••••••" />
+          <div class="error-msg" id="password-error"></div>
+        </div>
+        <button id="login-btn" class="btn btn-primary">
+          <span id="login-text">Sign in</span>
+          <span id="login-spinner" class="spinner spinner-primary hidden"></span>
+        </button>
+        <p class="auth-footer-text">
+          Don't have an account?
+          <a id="open-register" href="#" class="auth-register-link">Register on website</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- MAIN SCREEN -->
+    <div id="main-screen" class="hidden">
+      <!-- Header -->
+      <div class="header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <span class="logo-text">NoteNest</span>
+        </div>
+        <div class="header-actions">
+          <button id="theme-toggle-btn" class="btn btn-ghost btn-icon" title="Toggle theme">
+            <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+          <button id="logout-btn" class="btn btn-ghost btn-icon" title="Logout">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="save">💾 Save Note</button>
+        <button class="tab-btn" data-tab="ai">✨ AI Tools</button>
+        <button class="tab-btn" data-tab="notes">📝 My Notes</button>
+      </div>
+
+      <!-- SAVE NOTE TAB -->
+      <div id="tab-save" class="tab-content active">
+        <div id="selected-text-section" class="hidden">
+          <div class="selected-label">Selected text from page:</div>
+          <div class="selected-text-preview" id="selected-text-preview"></div>
+        </div>
+
+        <div>
+          <label class="field-label">Note Title *</label>
+          <input type="text" id="note-title" class="input" placeholder="Give your note a title..." />
+        </div>
+
+        <div>
+          <label class="field-label">Content</label>
+          <textarea id="note-content" class="textarea" rows="4" placeholder="Write your note here, or use selected text above..."></textarea>
+        </div>
+
+        <div>
+          <label class="field-label">Folder (optional)</label>
+          <select id="folder-select" class="folder-select">
+            <option value="">No folder</option>
+          </select>
+        </div>
+
+        <button id="save-note-btn" class="btn btn-primary btn-full">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+          </svg>
+          <span id="save-text">Save Note</span>
+          <span id="save-spinner" class="spinner spinner-primary hidden"></span>
+        </button>
+
+        <div id="save-success" class="save-success hidden">
+          ✅ Note saved successfully!
+        </div>
+      </div>
+
+      <!-- AI TOOLS TAB -->
+      <div id="tab-ai" class="tab-content">
+        <p class="ai-intro-text">
+          Select text on any page, then use AI to summarize or explain it.
+        </p>
+
+        <div>
+          <div class="selected-label">Text to analyze:</div>
+          <textarea id="ai-text-input" class="textarea" rows="4" placeholder="Select text on the page, or paste text here..."></textarea>
+        </div>
+
+        <div class="ai-actions">
+          <button id="ai-summarize-btn" class="btn btn-secondary btn-full btn-left">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            Summarize Text
+          </button>
+          <button id="ai-explain-btn" class="btn btn-secondary btn-full btn-left">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            Explain Text
+          </button>
+        </div>
+
+        <div id="ai-response-section" class="hidden">
+          <div class="ai-result-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            AI Response
+          </div>
+          <div id="ai-response-text" class="ai-result"></div>
+          <button id="save-ai-result-btn" class="btn btn-secondary btn-sm btn-full">
+            Save AI Result as Note
+          </button>
+        </div>
+
+        <div>
+          <label class="field-label">Ask AI about the text</label>
+          <div class="ai-ask-row">
+            <input type="text" id="ai-question" class="input" placeholder="Ask a question..." />
+            <button id="ai-ask-btn" class="btn btn-primary btn-icon btn-ask">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY NOTES TAB -->
+      <div id="tab-notes" class="tab-content">
+        <div class="notes-search-row">
+          <input type="search" id="notes-search" class="input" placeholder="Search notes..." />
+        </div>
+        <div id="notes-loading" class="notes-loading hidden">
+          <span class="spinner spinner-muted"></span>
+        </div>
+        <div class="notes-list" id="notes-list"></div>
+        <div id="notes-empty" class="empty-state hidden">
+          <p>No notes yet. Save your first note!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div id="status-bar" class="status-bar hidden">
+      <span id="user-greeting" class="user-greeting"></span>
+      <a id="open-website-link" href="http://localhost:5173" target="_blank" class="open-website-btn">
+        Open NoteNest ↗
+      </a>
+    </div>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
