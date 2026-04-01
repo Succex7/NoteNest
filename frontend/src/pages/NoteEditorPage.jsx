@@ -273,13 +273,13 @@ export default function NoteEditorPage() {
         )}
 
         {/* Editor */}
-        <div className="flex-1 overflow-hidden py-4 w-full max-w-full">
+        <div className="flex-1 overflow-hidden py-4">
           <textarea
-          placeholder="Start writing your note..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="h-full w-full max-w-full resize-none bg-transparent text-base leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none wrap-break-word whitespace-pre-wrap overflow-x-hidden"
-        />
+            placeholder="Start writing your note..."
+            value={content}   
+            onChange={(e) => setContent(e.target.value)}
+            className="h-full w-full resize-none bg-transparent text-base leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none"
+          />
         </div>
 
         {/* File attachment preview */}
