@@ -14,6 +14,8 @@ const client = new OpenAI({
   baseURL: 'https://api.groq.com/openai/v1',
 })
 
+const MODEL = 'llama-3.3-70b-versatile'
+
 const summarizeNote = async (content) => {
   const result = await groq.chat.completions.create({
     model: "llama-3.3-70b-versatile",
