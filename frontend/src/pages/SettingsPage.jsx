@@ -75,7 +75,7 @@ export default function SettingsPage() {
 
           {/* Avatar */}
           <div className="mb-6 flex items-center gap-4">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground">
+            <div className="flex h-15 w-20 items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground">
               {getInitials(user?.username)}
             </div>
             <div>
@@ -145,7 +145,7 @@ export default function SettingsPage() {
             <span
               className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full transition-transform ${
                 theme === 'dark'
-                  ? 'translate-x-5 bg-black'   // ← dark mode: black thumb, white track
+                  ? 'translate-x-4 bg-black'   // ← dark mode: black thumb, white track
                   : 'translate-x-0 bg-white'   // ← light mode: white thumb, grey track
               }`}
             />
