@@ -1,4 +1,8 @@
 import OpenAI from "openai";
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+const pdfParseModule = require('pdf-parse/lib/pdf-parse.js')
+const pdfParse = pdfParseModule.default || pdfParseModule
 
 const groq = new OpenAI({
   apiKey: process.env.GROQ_API_KEY,
