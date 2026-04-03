@@ -16,9 +16,17 @@ import toast from 'react-hot-toast'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, isNewUser, setIsNewUser } = useAuth()
   const { notes, folders, setAllNotes, setAllFolders } = useNotes()
   const [isLoading, setIsLoading] = useState(true)
+
+// Reset isNewUser after showing it once
+useEffect(() => {
+  if (isNewUser) {
+    const timer = setTimeout(() => setIsNewUser(false), 5000)
+    return () => clearTimeout(timer)
+  }
+}, [isNewUser])
 
 useEffect(() => {
   // Small guard — wait for token to be ready
@@ -51,7 +59,10 @@ useEffect(() => {
         {/* Welcome */}
         <div>
           <h1 className="text-2xl font-bold text-foreground md:text-3xl">
-            Welcome back, {user?.username?.split(' ')[0] || 'User'}!
+            {isNewUser
+              ? `Welcome to NoteNest, ${user?.username?.split(' ')[0] || 'User'}! 🎉`
+              : `Welcome back, ${user?.username?.split(' ')[0] || 'User'}! 👋`
+            }
           </h1>
           <p className="mt-1 text-muted-foreground">Here's an overview of your notes</p>
         </div>

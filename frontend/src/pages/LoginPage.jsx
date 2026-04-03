@@ -36,7 +36,7 @@ export default function LoginPage() {
     const token = res.data.data.token
     const userData = res.data.data
     login(userData, token)
-      toast.success('Welcome back!')
+      toast.success(`Welcome back, ${data.username}!`)
       navigate('/dashboard', { replace: true })
     } catch (err) {
       const msg = getErrorMessage(err)

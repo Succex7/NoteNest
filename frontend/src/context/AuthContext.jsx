@@ -22,10 +22,12 @@ export function AuthProvider({ children }) {
       .finally(() => setAuthLoading(false))
   }, [])
 
-  const login = (userData, token) => {
-    // Write token to localStorage FIRST — interceptor reads it fresh
+const [isNewUser, setIsNewUser] = useState(false)
+
+  const login = (userData, token, newUser = false) => {
     localStorage.setItem('notenest_token', token)
     localStorage.setItem('notenest_user', JSON.stringify(userData))
+    setIsNewUser(newUser)
     setUser(userData)
   }
 
@@ -40,7 +42,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, authLoading, login, logout, updateUser }}>
+    <AuthContext.Provider value={{ user, authLoading, login, logout, updateUser, isNewUser, setIsNewUser }}>
       {children}
     </AuthContext.Provider>
   )
