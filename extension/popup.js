@@ -1,6 +1,6 @@
 // extension/popup.js — NoteNest Chrome Extension Logic
 
-const API_BASE = 'http://localhost:5000/api'
+const API_BASE = 'https://notenest-t4il.onrender.com'
 
 // ─── Storage helpers ───────────────────────────────────────────────────────────
 const Storage = {
@@ -124,7 +124,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
 
 document.getElementById('open-register').addEventListener('click', (e) => {
   e.preventDefault()
-  chrome.tabs.create({ url: 'http://localhost:5173/register' })
+  chrome.tabs.create({ url: 'https://note-nest-omega-five.vercel.app' })
 })
 
 document.getElementById('logout-btn').addEventListener('click', async () => {
@@ -382,7 +382,7 @@ function renderNotes(notes) {
       <div class="note-item-date">${formatDate(note.updatedAt)}</div>
     `
     item.addEventListener('click', () => {
-      chrome.tabs.create({ url: `http://localhost:5173/notes/${note._id}` })
+      chrome.tabs.create({ url: `https://note-nest-omega-five.vercel.app/${note._id}` })
     })
     list.appendChild(item)
   })
@@ -403,7 +403,7 @@ document.getElementById('notes-search').addEventListener('input', (e) => {
 // ─── Open website ──────────────────────────────────────────────────────────────
 document.getElementById('open-website-link').addEventListener('click', (e) => {
   e.preventDefault()
-  chrome.tabs.create({ url: 'http://localhost:5173/dashboard' })
+  chrome.tabs.create({ url: 'https://note-nest-omega-five.vercel.app' })
 })
 
 // ─── Loading states ────────────────────────────────────────────────────────────

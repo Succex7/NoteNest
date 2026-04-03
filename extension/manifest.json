@@ -10,7 +10,7 @@
     "sidePanel"
   ],
   "host_permissions": [
-    "http://localhost:5000/*",
+    "https://notenest-t4il.onrender.com/*",
     "https://*/*"
   ],
   "action": {
