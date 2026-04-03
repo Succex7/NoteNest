@@ -38,8 +38,8 @@ export default function RegisterPage() {
       const res = await registerUser(formData)
       const token = res.data.data.token
       const userData = res.data.data
-      login(userData, token, true) // Mark as new user for onboarding
-      toast.success(`Welcome to NoteNest, ${userData.username}! 🎉`)
+      login(userData, token)
+      toast.success('Account created successfully!')
       navigate('/dashboard', { replace: true })
     } catch (err) {
       const msg = getErrorMessage(err)
