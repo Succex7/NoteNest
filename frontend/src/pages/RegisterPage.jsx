@@ -38,7 +38,7 @@ export default function RegisterPage() {
       const res = await registerUser(formData)
       const token = res.data.data.token
       const userData = res.data.data
-      login(userData, token, true) 
+      login(userData, token, true) // Mark as new user for onboarding
       toast.success('Account created successfully!')
       navigate('/dashboard', { replace: true })
     } catch (err) {
