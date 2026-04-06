@@ -21,10 +21,6 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true)
 
 useEffect(() => {
-  // Small guard — wait for token to be ready
-  const token = localStorage.getItem('notenest_token')
-  if (!token) return
-
   const fetchData = async () => {
     try {
       const [notesRes, foldersRes] = await Promise.all([
@@ -44,15 +40,15 @@ useEffect(() => {
 
 
   const recentNotes = notes.slice(0, 6)
-
+/* THIS NOW HAS A GENERAL WELCOME MESSAGE */
   return (
     <DashboardLayout>
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Welcome */}
         <div>
-          <h1 className="text-2xl font-bold text-foreground md:text-3xl">
-            Welcome back, {user?.username?.split(' ')[0] || 'User'}!
-          </h1>
+        <h1 className="text-2xl font-bold text-foreground md:text-3xl">
+          Welcome, {user?.username?.split(' ')[0] || 'User'}! 👋
+        </h1>
           <p className="mt-1 text-muted-foreground">Here's an overview of your notes</p>
         </div>
 
