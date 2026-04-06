@@ -151,15 +151,15 @@ export default function NoteEditorPage() {
     }
   }
 
-  const handleMoveToFolder = async (newFolderId) => {
+const handleMoveToFolder = async (newFolderId) => {
   setFolderId(newFolderId)
-  setFolderMenuOpen(false)
   setMenuOpen(false)
+  setFolderSubmenuOpen(false)
 
-  // Save to backend immediately
-  if (!isNew && (noteId || id)) {
+  if (!isNew) {
+    const currentId = noteId || id
+    if (!currentId) return
     try {
-      const currentId = noteId || id
       await updateNote(currentId, { folderId: newFolderId || null })
       updateNoteLocal(currentId, { folder: newFolderId || null })
       toast.success(newFolderId ? 'Moved to folder ✅' : 'Removed from folder')
@@ -223,45 +223,56 @@ export default function NoteEditorPage() {
                 </button>
                 {menuOpen && (
                   <>
-                    <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />
-                    <div className="absolute right-0 top-10 z-20 w-48 rounded-lg border border-border bg-card shadow-lg">
-                      {/* Move to folder */}
-                    <div className="group/sub relative">
-                      <button className="flex w-full items-center gap-2 px-3 py-2 text-sm text-foreground transition-colors hover:bg-secondary">
-                        <FolderInput className="h-4 w-4" /> Move to folder
-                      </button>
-                      <div className="absolute left-full top-0 z-30 hidden w-48 rounded-lg border border-border bg-card shadow-lg group-hover/sub:block">
-                        <button
-                          onClick={() => { handleMoveToFolder(null); setMenuOpen(false) }}
-                          className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
-                        >
-                          No folder
-                        </button>
-                        <div className="border-t border-border" />
-                        {folders.map((f) => (
-                          <button
-                            key={f._id}
-                            onClick={() => { handleMoveToFolder(f._id); setMenuOpen(false) }}
-                            className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary"
-                          >
-                            {f.name}
-                          </button>
-                        ))}
-                        {folders.length === 0 && (
-                          <p className="px-3 py-2 text-xs text-muted-foreground">
-                            No folders yet
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                    <div className="fixed inset-0 z-10" onClick={() => { setMenuOpen(false); setFolderSubmenuOpen(false) }} />
+                    <div className="absolute right-0 top-10 z-20 w-52 rounded-lg border border--border bg-card shadow-lg">
 
-                      <div className="my-1 border-t border-border" />
+                      {/* Move to folder */}
+                      <button
+                        onClick={() => setFolderSubmenuOpen(!folderSubmenuOpen)}
+                        className="flex w-full items-center justify-between px-3 py-2 text-sm text-foreground transition-colors hover:bg-secondary"
+                      >
+                        <span className="flex items-center gap-2">
+                          <FolderInput className="h-4 w-4" />
+                          Move to folder
+                        </span>
+                        <span className="text-xs text-muted-foreground">›</span>
+                      </button>
+
+                      {/* Folder submenu — shows below when clicked */}
+                      {folderSubmenuOpen && (
+                        <div className="border-t border-border bg-(--secondary)/50">
+                          <button
+                            onClick={() => { handleMoveToFolder(null); setFolderSubmenuOpen(false) }}
+                            className="w-full px-4 py-2 text-left text-sm text-foreground hover:bg-secondary"
+                          >
+                            No folder
+                          </button>
+                          {folders.length === 0 && (
+                            <p className="px-4 py-2 text-xs text-muted-foreground">No folders yet</p>
+                          )}
+                          {folders.map((f) => (
+                            <button
+                              key={f._id}
+                              onClick={() => { handleMoveToFolder(f._id); setFolderSubmenuOpen(false) }}
+                              className="w-full px-4 py-2 text-left text-sm text-foreground hover:bg-secondary  "
+                            >
+                              {f.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="border-t border-border" />
+
+                      {/* Delete note */}
                       <button
                         onClick={() => { setMenuOpen(false); setDeleteDialogOpen(true) }}
                         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-500/10"
                       >
-                        <Trash2 className="h-4 w-4" /> Delete note
+                        <Trash2 className="h-4 w-4" />
+                        Delete note
                       </button>
+
                     </div>
                   </>
                 )}

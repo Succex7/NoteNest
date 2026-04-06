@@ -40,6 +40,7 @@ export default function RegisterPage() {
       const userData = res.data.data
       login(userData, token, true) // Mark as new user for onboarding
       toast.success('Account created successfully!')
+      localStorage.setItem('notenest_new_user', 'true')
       navigate('/dashboard', { replace: true })
     } catch (err) {
       const msg = getErrorMessage(err)

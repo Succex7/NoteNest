@@ -11,9 +11,11 @@ export default function DashboardLayout({ children }) {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <div className="flex overflow-x-hidden">
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <div className="flex min-h-screen flex-1 flex-col min-w-0">
+        <div className="flex min-h-screen flex-1 flex-col">
+        <div className="sticky top-0 z-40">
           <Navbar onMenuClick={() => setSidebarOpen(true)} />
-          <main className="flex-1 p-3 sm:p-4 md:p-6 overflow-x-hidden min-w-0">{children}</main>
+        </div>
+        <main className="flex-1 p-4 md:p-6">{children}</main>
         </div>
       </div>
     </div>

@@ -16,7 +16,14 @@ import toast from 'react-hot-toast'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
-  const { user, isNewUser, setIsNewUser } = useAuth()
+  const { user } = useAuth()
+  const isNewUser = localStorage.getItem('notenest_new_user') === 'true'
+
+useEffect(() => {
+  if (isNewUser) {
+    localStorage.removeItem('notenest_new_user')
+  }
+}, [])
   const { notes, folders, setAllNotes, setAllFolders } = useNotes()
   const [isLoading, setIsLoading] = useState(true)
 
@@ -58,12 +65,12 @@ useEffect(() => {
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Welcome */}
         <div>
-          <h1 className="text-2xl font-bold text-foreground md:text-3xl">
-            {isNewUser
-              ? `Welcome to NoteNest, ${user?.username?.split(' ')[0] || 'User'}! 🎉`
-              : `Welcome back, ${user?.username?.split(' ')[0] || 'User'}! 👋`
-            }
-          </h1>
+        <h1 className="text-2xl font-bold text-foreground md:text-3xl">
+        {isNewUser
+        ? `Welcome to NoteNest, ${user?.username?.split(' ')[0] || 'User'}! 🎉`
+        : `Welcome back, ${user?.username?.split(' ')[0] || 'User'}! 👋`
+        }
+        </h1>
           <p className="mt-1 text-muted-foreground">Here's an overview of your notes</p>
         </div>
 
