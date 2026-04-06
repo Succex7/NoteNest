@@ -17,29 +17,10 @@ import toast from 'react-hot-toast'
 export default function DashboardPage() {
   const navigate = useNavigate()
   const { user } = useAuth()
-  const isNewUser = localStorage.getItem('notenest_new_user') === 'true'
-
-useEffect(() => {
-  if (isNewUser) {
-    localStorage.removeItem('notenest_new_user')
-  }
-}, [])
   const { notes, folders, setAllNotes, setAllFolders } = useNotes()
   const [isLoading, setIsLoading] = useState(true)
 
-// Reset isNewUser after showing it once
 useEffect(() => {
-  if (isNewUser) {
-    const timer = setTimeout(() => setIsNewUser(false), 5000)
-    return () => clearTimeout(timer)
-  }
-}, [isNewUser])
-
-useEffect(() => {
-  // Small guard — wait for token to be ready
-  const token = localStorage.getItem('notenest_token')
-  if (!token) return
-
   const fetchData = async () => {
     try {
       const [notesRes, foldersRes] = await Promise.all([
@@ -66,10 +47,7 @@ useEffect(() => {
         {/* Welcome */}
         <div>
         <h1 className="text-2xl font-bold text-foreground md:text-3xl">
-        {isNewUser
-        ? `Welcome to NoteNest, ${user?.username?.split(' ')[0] || 'User'}! 🎉`
-        : `Welcome back, ${user?.username?.split(' ')[0] || 'User'}! 👋`
-        }
+          Welcome, {user?.username?.split(' ')[0] || 'User'}! 👋
         </h1>
           <p className="mt-1 text-muted-foreground">Here's an overview of your notes</p>
         </div>
