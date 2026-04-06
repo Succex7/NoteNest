@@ -6,11 +6,10 @@
   "permissions": [
     "activeTab",
     "storage",
-    "scripting",
-    "sidePanel"
+    "scripting"
   ],
   "host_permissions": [
-    "http://localhost:5000/*",
+    "https://notenest-t4il.onrender.com/*",
     "https://*/*"
   ],
   "action": {
@@ -21,9 +20,6 @@
       "128": "icons/icon128.png"
     },
     "default_title": "NoteNest"
-  },
-  "side_panel": {
-    "default_path": "sidepanel.html"
   },
   "content_scripts": [
     {
