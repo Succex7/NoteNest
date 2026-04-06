@@ -56,4 +56,53 @@ NoteNest follows a full stack architecture:
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/notenest.git
+git clone https://github.com/Succex7/notenest.git
+```
+2. Navigate into the project directory
+```bash
+cd notenest
+```
+3. Install dependencies for both client and server
+```bash
+npm install
+```
+4. Create a .env file in the root directory and add the following:
+```bash
+MONGO_URI=your_mongodb_connection_string
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+AI_API_KEY=your_ai_api_key
+```
+5. Start the development server
+```bash
+npm run dev
+```
+## Usage
+Install the browser extension to start saving notes from any webpage
+Access your notes through the web app dashboard
+Use AI features to summarize or explain notes and documents
+Organize your notes into folders for better productivity
+
+## Live Demo
+
+[https://note-nest-omega-five.vercel.app/]
+
+## Future Improvements
+Real time collaboration on notes
+Advanced search and filtering
+Tagging system for notes
+Enhanced AI features and customization
+
+## Contributing
+
+Contributions are welcome. Feel free to fork the repository and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+Built by Suc_cex
+
