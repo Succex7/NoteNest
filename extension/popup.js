@@ -105,7 +105,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
 
   setLoading('login', true)
   try {
-    const res = await apiCall('/auth/login', {
+    const res = await apiCall('https://notenest-t4il.onrender.com', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     })
