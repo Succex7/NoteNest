@@ -1,6 +1,6 @@
 // extension/popup.js — NoteNest Chrome Extension Logic
 
-const API_BASE = 'https://notenest-t4il.onrender.com'
+const API_BASE = 'https://notenest-t4il.onrender.com/api'
 
 // ─── Storage helpers ───────────────────────────────────────────────────────────
 const Storage = {
@@ -105,7 +105,7 @@ document.getElementById('login-btn').addEventListener('click', async () => {
 
   setLoading('login', true)
   try {
-    const res = await apiCall('https://notenest-t4il.onrender.com', {
+    const res = await apiCall('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     })
