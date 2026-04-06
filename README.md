@@ -86,7 +86,7 @@ Organize your notes into folders for better productivity
 
 ## Live Demo
 
-[https://note-nest-omega-five.vercel.app/]
+https://note-nest-omega-five.vercel.app
 
 ## Future Improvements
 Real time collaboration on notes
