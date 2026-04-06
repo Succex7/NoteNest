@@ -77,15 +77,15 @@ document.getElementById('theme-toggle-btn').addEventListener('click', async () =
 
 // ─── Screen management ─────────────────────────────────────────────────────────
 function showAuthScreen() {
-  authScreen.style.display = 'flex'
-  mainScreen.style.display = 'none'
-  statusBar.style.display = 'none'
+  authScreen.classList.remove('hidden')
+  mainScreen.classList.add('hidden')
+  statusBar.classList.add('hidden')
 }
 
 function showMainScreen() {
-  authScreen.style.display = 'none'
-  mainScreen.style.display = 'flex'
-  statusBar.style.display = 'flex'
+  authScreen.classList.add('hidden')
+  mainScreen.classList.remove('hidden')
+  statusBar.classList.remove('hidden')
   document.getElementById('user-greeting').textContent =
     `Hi, ${currentUser?.username || 'User'} 👋`
 }
