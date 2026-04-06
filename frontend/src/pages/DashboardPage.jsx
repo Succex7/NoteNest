@@ -40,7 +40,7 @@ useEffect(() => {
 
 
   const recentNotes = notes.slice(0, 6)
-
+/* THIS NOW HAS A GENERAL WELCOME MESSAGE */
   return (
     <DashboardLayout>
       <div className="mx-auto max-w-6xl space-y-8">
