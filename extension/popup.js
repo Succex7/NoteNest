@@ -261,8 +261,12 @@ async function runAI(action) {
     return
   }
 
-  document.getElementById('ai-response-section').style.display = 'none'
-  document.getElementById(`ai-${action}-btn`).innerHTML = '<span class="spinner" style="border-color: var(--muted-foreground); border-top-color: transparent;"></span> Processing...'
+  function showAIResult(text) {
+  const section = document.getElementById('ai-response-section')
+  const responseText = document.getElementById('ai-response-text')
+  section.classList.remove('hidden')
+  responseText.textContent = text
+}
 
   try {
     let res
