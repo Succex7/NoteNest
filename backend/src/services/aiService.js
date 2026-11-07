@@ -18,7 +18,7 @@ const MODEL = 'openai/gpt-oss-20b';
 
 const summarizeNote = async (content) => {
   const result = await groq.chat.completions.create({
-    model: "MODEL",
+    model: MODEL,
     messages: [{ role: "user", content: `Summarize this:\n\n${content}` }],
   });
   return result.choices[0].message.content;
@@ -26,7 +26,7 @@ const summarizeNote = async (content) => {
 
 const explainNote = async (content) => {
   const result = await groq.chat.completions.create({
-    model: "MODEL",
+    model: MODEL,
     messages: [{ role: "user", content: `Explain this in simple terms:\n\n${content}` }],
   });
   return result.choices[0].message.content;
@@ -34,7 +34,7 @@ const explainNote = async (content) => {
 
 const askAboutNote = async (content, question) => {
   const result = await groq.chat.completions.create({
-    model: "MODEL",
+    model: MODEL,
     messages: [{ role: "user", content: `Note:\n${content}\n\nQuestion: ${question}` }],
   });
   return result.choices[0].message.content;
@@ -42,7 +42,7 @@ const askAboutNote = async (content, question) => {
 
 const generalChat = async (userMessage) => {
   const result = await groq.chat.completions.create({
-    model: "MODEL",
+    model: MODEL,
     messages: [{ role: "user", content: userMessage }],
   });
   return result.choices[0].message.content;
